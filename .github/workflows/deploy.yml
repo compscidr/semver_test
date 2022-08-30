@@ -1,0 +1,27 @@
+name: Deploy App
+
+# only deploy a release if we pass the other tests: https://stackoverflow.com/questions/58457140/dependencies-between-workflows-on-github-actions
+on:
+  workflow_run:
+    workflows: [ "Android CI" ]
+    branches: [ main ]
+    types:
+      - completed
+
+jobs:
+  deploy:
+    needs: [ build-test ]
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: set up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v2
+
+      # todo (compscidr): make an actual deploy to github releases or something here where we can verify the semver info

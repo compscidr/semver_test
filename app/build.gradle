@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'com.hiya.jacoco-android' version '0.2'
+    id 'io.github.reactivecircus.app-versioning' version "1.1.2"
 }
 
 android {
@@ -17,8 +19,13 @@ android {
     }
 
     buildTypes {
+        debug {
+            minifyEnabled false
+            testCoverageEnabled true
+        }
         release {
             minifyEnabled false
+            testCoverageEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -31,6 +38,17 @@ android {
     }
     buildFeatures {
         viewBinding true
+    }
+
+    testOptions {
+        unitTests.all {
+            useJUnitPlatform()
+            jacoco {
+                destinationFile = file("$buildDir/jacoco/moduleTestsCoverage.exec")
+                includeNoLocationClasses = true
+                excludes = ['jdk.internal.*']
+            }
+        }
     }
 }
 
