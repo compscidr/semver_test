@@ -10,7 +10,6 @@ on:
 
 jobs:
   deploy:
-    needs: [ build-test ]
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
@@ -25,3 +24,5 @@ jobs:
         uses: android-actions/setup-android@v2
 
       # todo (compscidr): make an actual deploy to github releases or something here where we can verify the semver info
+      - name: Build Release
+        run: ./gradlew assembleRelease
