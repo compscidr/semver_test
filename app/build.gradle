@@ -64,5 +64,14 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 }
 
+// https://github.com/ReactiveCircus/app-versioning
+import io.github.reactivecircus.appversioning.SemVer
+appVersioning {
+    overrideVersionCode { gitTag, providers, variantInfo ->
+        def semVer = SemVer.fromGitTag(gitTag)
+        semVer.major * 1000000 + semVer.minor * 1000 + semVer.patch
+    }
+}
+
 // https://proandroiddev.com/android-libraries-on-github-packages-21f135188d58
 apply from: file('publish.gradle')
