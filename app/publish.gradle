@@ -12,8 +12,8 @@ publishing {
             name = "GithubPackages"
             url = uri("https://maven.pkg.github.com/compscidr/semver_test")
             credentials {
-                username = System.getenv('GITHUB_USER') ?: project.properties['GITHUB_USER']
-                password = System.getenv('GITHUB_PERSONAL_ACCESS_TOKEN') ?: project.properties['GITHUB_PERSONAL_ACCESS_TOKEN']
+                username = System.getenv('GH_USER') ?: project.properties['GH_USER']
+                password = System.getenv('GH_PAT') ?: project.properties['GH_PAT']
             }
         }
         maven {
