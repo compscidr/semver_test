@@ -28,4 +28,4 @@ jobs:
 
       # todo (compscidr): make an actual deploy to github releases or something here where we can verify the semver info
       - name: Build Release
-        run: ./gradlew assembleRelease && ls -la app/build/outputs/apk && ./gradlew -PGH_USER="${{ secrets.GH_USER }}" -PGH_PAT="${{ secrets.PAT }}" publishAllPublicationsToGithubPackagesRepository
+        run: ./gradlew assembleRelease && ls -la app/build/outputs/apk/release && ./gradlew -PGH_USER="${{ secrets.GH_USER }}" -PGH_PAT="${{ secrets.PAT }}" publishAllPublicationsToGithubPackagesRepository
