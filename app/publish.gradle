@@ -25,7 +25,7 @@ publishing {
         semver_test(MavenPublication) {
             groupId "com.example"
             artifactId "semver_test"
-            version System.getenv('VERSION_NAME')+"-"+System.getenv('VERISON_CODE')
+            version System.getenv('VERSION_NAME')+"-"+System.getenv('VERSION_CODE')
             artifact("$buildDir/outputs/apk/release/app-release-unsigned.apk")
             artifact(sourceJar)
 
