@@ -22,7 +22,7 @@ publishing {
         }
     }
     publications {
-        droidlib2(MavenPublication) {
+        semver_test(MavenPublication) {
 // todo (compscidr): determine how to get the info from app-versioning in here.
 //            groupId LIB_GROUP_ID
 //            artifactId LIB_ARTIFACT_ID
