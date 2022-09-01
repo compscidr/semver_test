@@ -30,5 +30,5 @@ jobs:
       - name: Build Release
         env:
           GH_USER: ${{ secrets.GH_USER }}
-          GH_PAT: ${{ secrets.PAT }}
+          GH_PAT: ${{ secrets.GH_PAT }}
         run: ./gradlew assembleRelease publishAllPublicationsToGithubPackagesRepository
