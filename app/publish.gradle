@@ -23,10 +23,9 @@ publishing {
     }
     publications {
         semver_test(MavenPublication) {
-// todo (compscidr): determine how to get the info from app-versioning in here.
-//            groupId LIB_GROUP_ID
-//            artifactId LIB_ARTIFACT_ID
-//            version LIB_VERSION
+            groupId "com.example"
+            artifactId "semver_test"
+            version System.getenv('VERSION_NAME')+"-"+System.getenv('VERISON_CODE')
             artifact("$buildDir/outputs/apk/release/app-release-unsigned.apk")
             artifact(sourceJar)
 

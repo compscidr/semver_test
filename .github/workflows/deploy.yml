@@ -25,9 +25,19 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v2
 
-      # todo (compscidr): make an actual deploy to github releases or something here where we can verify the semver info
-      - name: Build Release
+      - name: Assemble Release
         env:
           GH_USER: ${{ secrets.GH_USER }}
           GH_PAT: ${{ secrets.GH_PAT }}
-        run: ./gradlew assembleRelease publishAllPublicationsToGithubPackagesRepository
+        run: ./gradlew assembleRelease
+
+      - name: Export environment variables
+        run: |
+          echo "::set-env name=VERSION_NAME::$(cat app/build/outputs/app_versioning/release/version_name.txt)"
+          echo "::set-env name=VERSION_CODE::$(cat app/build/outputs/app_versioning/release/version_code.txt)"
+
+      - name: Publish Release
+        env:
+          GH_USER: ${{ secrets.GH_USER }}
+          GH_PAT: ${{ secrets.GH_PAT }}
+        run: ./gradlew publishAllPublicationsToGithubPackagesRepository
