@@ -36,8 +36,8 @@ jobs:
 
       - name: Export environment variables
         run: |
-          echo "::set-env name=VERSION_NAME::$(cat app/build/outputs/app_versioning/release/version_name.txt)"
-          echo "::set-env name=VERSION_CODE::$(cat app/build/outputs/app_versioning/release/version_code.txt)"
+          echo "VERSION_NAME=$(cat app/build/outputs/app_versioning/release/version_name.txt)" >> $GITHUB_ENV
+          echo "VERSION_CODE=$(cat app/build/outputs/app_versioning/release/version_code.txt)" >> $GITHUB_ENV
 
       - name: Publish Release
         env:
