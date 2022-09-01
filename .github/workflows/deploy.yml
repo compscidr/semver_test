@@ -9,6 +9,9 @@ on:
       - completed
     status:
       - success
+  push:
+    tags:
+      - "*"
 
 jobs:
   deploy:
