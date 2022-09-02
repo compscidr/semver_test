@@ -65,11 +65,9 @@ dependencies {
 }
 
 // https://github.com/ReactiveCircus/app-versioning
-import io.github.reactivecircus.appversioning.SemVer
 appVersioning {
     overrideVersionCode { gitTag, providers, variantInfo ->
-        def semVer = SemVer.fromGitTag(gitTag)
-        semVer.major * 1000000 + semVer.minor * 1000 + semVer.patch
+        gitTag.commitsSinceLatestTag
     }
 }
 
