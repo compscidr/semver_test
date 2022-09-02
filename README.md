@@ -1,2 +1,1 @@
 # semver_test
-test
